@@ -1,0 +1,11 @@
+package Seccion;
+
+
+public class Ejercicio1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String entrada = args[0];
+		System.out.println(entrada);	
+	}
+}

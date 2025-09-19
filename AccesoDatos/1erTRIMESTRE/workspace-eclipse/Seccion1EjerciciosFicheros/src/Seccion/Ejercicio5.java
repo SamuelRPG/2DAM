@@ -1,0 +1,17 @@
+package Seccion;
+import java.io.File;
+
+public class Ejercicio5 {
+
+	public static void main(String[] args) {
+		String dir = args[0];
+		String ext = args[1];
+		
+		FiltroExtension extFiltrada = new FiltroExtension(ext);
+		File directorio = new File(dir);
+		
+		String[] listaFicheros = directorio.list(extFiltrada);
+		
+	}
+
+}

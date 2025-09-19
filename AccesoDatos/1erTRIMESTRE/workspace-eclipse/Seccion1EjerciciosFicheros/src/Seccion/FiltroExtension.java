@@ -1,0 +1,17 @@
+package Seccion;
+import java.io.File;
+import java.io.FilenameFilter;
+
+public class FiltroExtension implements FilenameFilter {
+	private String extension;
+
+	public FiltroExtension(String ext) {
+		this.extension = ext;
+	}
+	
+	public boolean accept(File dir, String name) {
+		return name.endsWith(extension);
+	}
+	
+
+}
