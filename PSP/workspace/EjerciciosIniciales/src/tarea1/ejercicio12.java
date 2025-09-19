@@ -26,6 +26,7 @@ public class ejercicio12 {
 				else if (e >= 9 && e < 10) { excelentes.add(e); contador++;}
 				else { matricula.add(e); contador++;}
 		} while (contador < 10);
+		sc.close();
 		
 		if (suspensos.isEmpty()) { System.out.println("No hay ningún supenso");
 		} else {
