@@ -16,7 +16,7 @@ public class ejercicio1 {
 		int num2 = Integer.parseInt(n2);
 		System.out.println("La suma es: " + (num1 + num2));
 		
-		
+		sc.close();	
 	}
 
 }

@@ -15,6 +15,8 @@ public class ejercicio5 {
 				x= sc.nextInt();
 		} while (n != x);
 		
+		sc.close();	
+		
 	}
 
 }

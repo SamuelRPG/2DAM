@@ -16,6 +16,8 @@ public class ejercicio4 {
 		if (numa < numb) { System.out.println("El número mayor es " + numb + " y el menor es " + numa);
 			} else System.out.println("El numero mayor es " + numa + " y el menor es " + numb);
 		
+		sc.close();	
+		
 	}
 
 }

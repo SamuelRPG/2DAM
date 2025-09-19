@@ -16,6 +16,8 @@ public class ejercicio7 {
 		}while(cuenta < 6);
 		
 		System.out.println("La suma de los números es: "+suma);
+		
+		sc.close();	
 	}
 
 }

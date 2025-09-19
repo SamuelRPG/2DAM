@@ -1,7 +1,7 @@
 package tarea1;
 import java.util.Scanner;
 
-public class ejercicio8 {
+public class ejercicio10 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -36,5 +36,4 @@ public class ejercicio8 {
 		}while (num != 0);
 		sc.close();
 	}
-
 }

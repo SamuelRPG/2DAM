@@ -13,6 +13,8 @@ public class ejercicio6 {
 			suma+=n;
 		}
 		System.out.println("La suma de los 5 números es "+ suma);
+		
+		sc.close();	
 	}
 
 }

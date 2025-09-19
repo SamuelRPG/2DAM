@@ -9,6 +9,7 @@ public class ejercicio2 {
 		System.out.println("Introduce la palabra a combinar: ");
 		String n = sc.nextLine();
 		System.out.println("Hola " + n);
+		sc.close();	
 	}
 
 }
