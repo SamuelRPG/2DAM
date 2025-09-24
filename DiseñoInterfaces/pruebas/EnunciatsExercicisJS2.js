@@ -97,6 +97,8 @@ const users = [
 ]
 */
 
+//las siguientes 2 constantes hacen lo mismo
+const contctInfo = users.map(({ email, website, phone }) => ({email, website, phone}));
 const RetornaObjetos = (objetoParam) => objetoParam.reduce((objetoDevuelto, n) => {
     let kk = {};
     kk.email = n.email;
@@ -175,6 +177,15 @@ let comandes = [
 //         { client: 'Tomas Marin', productes: 'Platans' }
 //     ]
 // ]
+
+let listaComandas = comandes.map((elem) => {
+    return elem.productes.map((producto) => {
+        return {
+            client: elem.client.nom,
+            productes: producto.nom,
+        };
+    });
+});
 
 
 
