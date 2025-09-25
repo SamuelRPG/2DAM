@@ -9,9 +9,12 @@ public class Ejercicio5 {
 		
 		FiltroExtension extFiltrada = new FiltroExtension(ext);
 		File directorio = new File(dir);
-		
-		String[] listaFicheros = directorio.list(extFiltrada);
-		
-	}
 
+        //meto dentro de un array de strings aquellos archivos que tengan como extensión la
+        //que pasemos como segundo parámetro
+		String[] listaFicheros = directorio.list(extFiltrada);
+		for (String fichero : listaFicheros) {
+            System.out.println(fichero);
+        }
+	}
 }
