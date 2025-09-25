@@ -135,11 +135,16 @@ console.log(llistat_Id_Nom_Email(dadesUsuaris));
 //fer-ho amb map
 console.log("-----------------");
 const llistat_Id_Nom_Email_reduce = (objetoParam) => objetoParam.reduce((objetoDevuelto, n) => {
-    let obj = {};
-    obj.id = n.id
-    obj.name = n.name;
-    obj.email = n.email;
-    objetoDevuelto.push(obj);
+    // let obj = {};
+    // obj.id = n.id
+    // obj.name = n.name;
+    // obj.email = n.email;
+    // objetoDevuelto.push(obj);
+    objetoDevuelto.push({
+        id: n.id,
+        name: n.name, 
+        email: n.email, 
+    });
     return objetoDevuelto;
 
 }, []);
