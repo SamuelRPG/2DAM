@@ -1,3 +1,5 @@
+package initialpackage;
+
 public class Sumador {
     public static int sumar(int n1, int n2) {
         System.out.println("Sumando de "+n1+" hasta "+n2);
