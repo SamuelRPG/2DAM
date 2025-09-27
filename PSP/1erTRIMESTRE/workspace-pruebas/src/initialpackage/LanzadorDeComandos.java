@@ -8,7 +8,7 @@ public class LanzadorDeComandos {
             String javaHome = System.getProperty("java.home");
             String javaBin = javaHome + File.separator + "bin" + File.separator + "java";
             String classpath = System.getProperty("java.class.path");
-            String clase = "Sumador";
+            String clase = "initialpackage.Sumador";
             List<String> command = new ArrayList<>();
             command.add(javaBin);
             command.add("-cp");
