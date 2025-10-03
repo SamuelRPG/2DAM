@@ -9,13 +9,17 @@ public class ej3seccion2 {
                 Scanner sc = new Scanner(System.in);
                 File f = new File (args[0]);
                 FileReader fr = new FileReader(f, StandardCharsets.UTF_8);
-                BufferedReader br = new BufferedReader(fr);
-                String linea = br.readLine();
+                int caracter = fr.read();
+                int contador=0;
 
-                while (linea != null) {
-                    System.out.println(linea);
-                    sc.nextLine();
-                    linea=br.readLine();
+                while (caracter != -1) {
+                    System.out.print((char)caracter);
+                    contador++;
+                    caracter=fr.read();
+                    if (contador==90) {
+                        sc.nextLine();
+                        contador=0;
+                    }
                 }
         } catch (Exception e) {
             e.printStackTrace();
