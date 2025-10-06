@@ -3,6 +3,8 @@ package Seccion2;
 import java.util.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ej8seccion2 {
     public static void main (String[] args) {
@@ -16,6 +18,12 @@ public class ej8seccion2 {
             fNuevo.createNewFile();
             fw = new FileWriter(fNuevo, StandardCharsets.UTF_8, true);
             bw = new BufferedWriter(fw);
+
+            //Añado la fecha y hora de creación a la primera línea del fichero
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String fechaHora = "Archivo creado el: " + LocalDateTime.now().format(formatter);
+            bw.write(fechaHora);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

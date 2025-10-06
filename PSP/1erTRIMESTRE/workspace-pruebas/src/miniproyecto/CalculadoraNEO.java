@@ -13,7 +13,7 @@ public class CalculadoraNEO {
             posTierra= posTierra + vel * i;
         }
         double resultado = 100 * Math.random() *
-                Math.pow( ((pos-posTierra/(pos+posTierra))), 2);
+                Math.pow(((pos-posTierra/(pos+posTierra))), 2);
         return resultado;
     }
 
