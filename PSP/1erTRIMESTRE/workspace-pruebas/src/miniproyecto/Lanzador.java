@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lanzador {
-    public static void lanzador(int n1, int n2, String f) {
+    public static void lanzador(String f, String fSalida) {
         try {
             File ficheroNEO=new File(f);
             FileReader fr = new FileReader(f, StandardCharsets.UTF_8);
@@ -30,21 +30,39 @@ public class Lanzador {
                 command.add(String.valueOf(lineaArray[0]));
                 command.add(String.valueOf(lineaArray[1]));
                 command.add(String.valueOf(lineaArray[2]));
+                command.add(fSalida);
 
                 ProcessBuilder builder = new ProcessBuilder(command);
-
+                builder.inheritIO();
+                Process process = builder.start();
+                process.waitFor();
                 linea = br.readLine();
-
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        LeerFichero(fSalida);
+    }
 
+    public static void LeerFichero(String fLeido) {
+        try {
+            File ficheroLeido = new File (fLeido);
+            FileReader fr = new FileReader(ficheroLeido, StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(fr);
+            String linea = br.readLine();
 
-
+             while (linea != null) {
+                System.out.println(linea);
+                linea=br.readLine();
+             }
+             br.close();
+             fr.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static void main (String[] args) {
-        lanzador(1, 50, "C:\\Users\\Usuario\\Documents\\2DAM\\PSP\\1erTRIMESTRE\\workspace-pruebas\\src\\miniproyecto\\NEO.txt");
+        lanzador("src/miniproyecto/NEO.txt", "src/miniproyecto/nomdelNEO.txt");
     }
 }

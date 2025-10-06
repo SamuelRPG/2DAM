@@ -19,6 +19,6 @@ Splash,53.2,88.5
 Death star,43.1,150.2
 Sauron,98.1,823.2
 Shiva,876.7,992.1
-Freezer,5.6.48.1
+Freezer,5.6,48.1
 Anubis,7.6,1231.8
 Cthulhu,99.7,51.4
