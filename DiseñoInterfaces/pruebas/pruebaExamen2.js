@@ -157,9 +157,10 @@ console.log(nomEmpresaCiutat(dadesUsuaris));
 // nomICiutatAmbSaltDeLinia()
 // Crea un array de strings con el siguiente formato para cada usuario:
 const nomICiutatAmbSaltDeLinia = (objetoParam) => objetoParam.reduce((acum, elem) => {
-    acum.push(`${elem.name} \n ${elem.address.city}`);
+    acum.push(`${elem.name} ${elem.address.city}`);
     return acum;
 }, []);
+
 const nomICiutatAmbSaltDeLiniaMap = (objetoParam) => objetoParam.map((elem) => `${elem.name} \n ${elem.address.city}`)
 console.log(nomICiutatAmbSaltDeLinia(dadesUsuaris));
 console.log(nomICiutatAmbSaltDeLiniaMap(dadesUsuaris));
@@ -199,7 +200,6 @@ const llistaCompletaAdreces = (objetoParam) => objetoParam.map(({name, address})
 }));
 console.log(llistaCompletaAdreces(dadesUsuaris));
 
-
 // (usa map y template strings o concatenación).
 
 // usuarisPerCiutat()
@@ -214,9 +214,7 @@ console.log(llistaCompletaAdreces(dadesUsuaris));
 const usuarisPerCiutat = (objetoParam) => 
   objetoParam.reduce((acum, elem) => {
     const ciutat = elem.address.city;
-    if (!acum[ciutat]) {
       acum[ciutat] = []; // si no existe, la creamos
-    }
     acum[ciutat].push(elem.name); // añadimos el nombre del usuario
     return acum;
   }, {});
@@ -230,3 +228,8 @@ console.log(usuarisPerCiutat(dadesUsuaris));
 // (usa filter + map + includes).
 const emailsEmpresesAmbWord = (objetoParam) => objetoParam.filter((elem) => elem.company.name.toLowerCase().includes("romaguera")).map((elem) => elem.name)
 console.log(emailsEmpresesAmbWord(dadesUsuaris));
+
+const nameCiudadSBsinWeb = (objetoParam) => objetoParam.filter((elem) => elem.website === "").map(({name, address, company}) => ({
+    nom: name, ciutat: address.city, compani: company.bs
+}));
+console.log(nameCiudadSBsinWeb(dadesUsuaris));
