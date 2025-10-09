@@ -7,10 +7,11 @@ import java.util.List;
 
 public class CalculadoraNEO {
     private static double CalcularProbabilidad(double pos, double vel) {
-        double posTierra=0;
+        double posTierra=1;
+        double velTierra=100;
         for (int i = 0; i < (50 * 365 * 24 * 60 * 60); i++) {
             pos = pos + vel * i;
-            posTierra= posTierra + vel * i;
+            posTierra= posTierra + velTierra * i;
         }
         double resultado = 100 * Math.random() *
                 Math.pow(((pos-posTierra/(pos+posTierra))), 2);
