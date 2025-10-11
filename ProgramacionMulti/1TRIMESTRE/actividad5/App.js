@@ -1,35 +1,63 @@
-import { StyleSheet, Pressable, TextInput, Text, View, Alert } from 'react-native';
+import { Pressable, TextInput, Text, View, StyleSheet } from 'react-native';
 import { useState } from 'react';
-// You can import supported modules from npm
-import { Card } from 'react-native-paper';
-
-// or any files within the Snack
-import AssetExample from './components/AssetExample';
 
 export default function App() {
+  const[text, setText] = useState('');
+  const [textNom, setTextNom] = useState('');
+  const [array, setArray] = useState([]);
 
-  const[miArray, setmiArray] = useState([]);
-  const[text, setText] = useState();
-
-  const handleOnPress = () => {
-    let newArray = [...miArray];
-    if (text.trim() === '') {
-      Alert.alert("No has introducido nada");
-    } else if (isNaN(text)) {
-      Alert.alert("No has introducido un número");
+  function handleOnPress() {
+    let newArray = [...array];
+      if (text==='' || text == null || textNom==='' || textNom===null) {
+        alert("No has introducido nada");
+      } else if (validarDNI(text)) {
+        newArray.push(textNom);
+        newArray.push(text);
+        setArray(text);
+      }
+      setText("");
+      setTextNom("");
+      }
+    
+    
+    function validarDNI(dni) {
+       const letrasDNI = [
+      "T", "R", "W", "A", "G", "M", "Y", 
+      "F", "P", "D", "X", "B", "N", "J", 
+      "Z", "S", "Q", "V", "H", "L", "C", 
+      "K", "E"
+      ];
+      //convierto text en array 
+      let dniSinLetra=dni.slice(0, -1);
+      let dniOrigen = dni.split('');
+      let letraOriginal = dniOrigen.pop();
+      let resto = dniSinLetra%23;
+      let letra = letrasDNI[resto];
+      return letra === letraOriginal ? true : false;
     }
-
-  }
   return (
-    <View style={styles.container}>
-      <TextInput 
-      defaultValue={text}
-      onChangeText={(newText) => setText(newText)}
-      style={styles.input}
-      placeholder="Tilin vs zaza"/>
-      <Pressable onPress={handleOnPress}> 
-      <Text style={styles.text}> Pulsame </Text> 
+    <View style={styles.container}> 
+    <Text style={styles.mainText}>Validador de DNI</Text>
+      <TextInput
+        onChangeText={(newText) => setText(newText)}
+        defaultValue={text}
+        placeholder="Introduce tu DNI"
+        style={styles.input}
+      />
+      <Text style={styles.mainText}>Nombre</Text>
+      <TextInput
+        onChangeText={(newText2) => setTextNom(newText2)}
+        defaultValue={textNom}
+        placeholder="Introduce tu DNI"
+        style={styles.input}
+      />
+      <Pressable style={styles.button}>
+        <Text style={styles.buttonText} onPress={() => (handleOnPress())}>Pulsame</Text>
       </Pressable>
+
+      {array.map((value, index) => (
+        <Text key={index}>{value}</Text>
+      ))}
     </View>
   );
 }
@@ -37,22 +65,34 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    padding: 8,
-    alignItems: 'center', 
   },
   input: {
-    fontSize: 20, 
-    fontWeight: 'bold',
-    textAlign: 'center'
-  }, 
-  text: {
-   height: 40,
-    width: 80,
+    width: '80%',
+    height: 40,
+    borderWidth: 1,
+    borderColor: 'gray',
+    paddingHorizontal: 10,
+    marginBottom: 20,
+    borderRadius: 5,
+  },
+  button: {
+    width: 100,
+    height: 40, 
     backgroundColor: 'blue',
-    borderRadius: 8,
-    padding: 6,
-  }
-  
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+  },
+  mainText: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginBottom: 15,
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
 });

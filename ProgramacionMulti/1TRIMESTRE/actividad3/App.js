@@ -30,7 +30,7 @@ export default function App() {
     }
   return (
     <View style={styles.container}> 
-    <Text style={styles.mainText}>Validador de DNI</Text>
+    <Text style={styles.mainText}>Validad de DNI</Text>
       <TextInput
         onChangeText={(newText) => setText(newText)}
         defaultValue={text}
