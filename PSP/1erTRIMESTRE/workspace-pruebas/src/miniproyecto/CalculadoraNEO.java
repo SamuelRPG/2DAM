@@ -2,8 +2,7 @@ package miniproyecto;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DecimalFormat;
 
 public class CalculadoraNEO {
     private static double CalcularProbabilidad(double pos, double vel) {
@@ -14,22 +13,24 @@ public class CalculadoraNEO {
             posTierra= posTierra + velTierra * i;
         }
         double resultado = 100 * Math.random() *
-                Math.pow(((pos-posTierra/(pos+posTierra))), 2);
+                Math.pow(((pos-posTierra)/(pos+posTierra)), 2);
         return resultado;
     }
 
-    public static void RellenarFichero(File fichero, double pos, double vel, String NEO) {
+    public static void RellenarFichero(double pos, double vel, String NEO) {
         try {
             double probabilidad = CalcularProbabilidad(pos, vel);
-            fichero.createNewFile();
-            FileWriter fw = new FileWriter(fichero, StandardCharsets.UTF_8, true);
+            FileWriter fw = new FileWriter(NEO, StandardCharsets.UTF_8);
             BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(String.valueOf(probabilidad));
+            DecimalFormat df = new DecimalFormat("#.00");
             if (probabilidad < 10) {
-                bw.write(NEO + ": " + String.format("%.2f", probabilidad) + "%");
-                bw.newLine();
+                System.out.println(NEO + " tiene " + df.format(probabilidad) + "% de probabilidad Y NO PRESENTA UN RIESGO");
             } else {
-                System.err.println("NEO con probabilidad alta de impacto" + NEO + ": " + String.format("%.2f", probabilidad) + "%");
+                System.out.println(NEO + " tiene " + df.format(probabilidad) + "% de probabilidad de colision");
             }
+            bw.close();
+            fw.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,10 +38,13 @@ public class CalculadoraNEO {
     }
 
     public static void main (String[] args) {
+        if (args.length < 3) {
+            System.err.println("Uso: CalculadoraNEO <nombreNEO> <pos> <vel>");
+            return;
+        }
         String nomNEO = args[0];
         double posNEO = Double.parseDouble(args[1]);
         double velNEO = Double.parseDouble(args[2]);
-        File ficheroSalida = new File(args[3]);
-        RellenarFichero(ficheroSalida, posNEO, velNEO, nomNEO);
+        RellenarFichero(posNEO, velNEO, nomNEO);
     }
 }
