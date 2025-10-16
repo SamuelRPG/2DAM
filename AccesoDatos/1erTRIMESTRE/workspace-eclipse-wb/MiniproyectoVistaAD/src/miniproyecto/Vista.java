@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Vista {
 
@@ -14,22 +16,24 @@ public class Vista {
 	private JTextField textFieldReemplazar;
 	private JButton btnBuscar;
 	private JButton btnReemplazar;
+	JTextArea textAreaInput;
+	JTextArea textAreaChanges;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Vista window = new Vista();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Vista window = new Vista();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -65,13 +69,15 @@ public class Vista {
 		btnReemplazar.setBounds(568, 184, 89, 23);
 		frame.getContentPane().add(btnReemplazar);
 		
-		JTextArea textAreaInput = new JTextArea();
+		textAreaInput = new JTextArea();
 		textAreaInput.setBounds(23, 11, 684, 163);
 		frame.getContentPane().add(textAreaInput);
 		
-		JTextArea textAreaChanges = new JTextArea();
+		textAreaChanges = new JTextArea();
 		textAreaChanges.setBounds(23, 230, 684, 169);
 		frame.getContentPane().add(textAreaChanges);
+		
+		frame.setVisible(true);
 	}
 	
 	public JButton getBtnBuscar() {
@@ -85,5 +91,11 @@ public class Vista {
 	}
 	public JTextField getTextFieldReemplazar() {
 		return textFieldReemplazar;
+	}
+	public JTextArea getTextAreaInput() {
+		return textAreaInput;
+	}
+	public JTextArea getTextAreaChanges() {
+		return textAreaChanges;
 	}
 }
