@@ -8,83 +8,103 @@ export default function Calculadora() {
   const[resultado, setResultado] = useState();
   
   function handleOnNum(valor) {
-    if (valor === "." && !operador) {
-      setNum1(prev => {
-       const nuevoValor= prev + valor;
-        setResultado(nuevoValor);
+    if (operador === null) {
+      // Si no hay operador, añadir a num1
+      setNum1((prev) => {
+        const nuevoValor = prev + valor;
+        setResultado(nuevoValor); // Mostrar el valor en pantalla
+        return nuevoValor;
       });
-    } else if (valor === ","){
-        setNum2(prev => {
-          const nuevoValor = prev + valor;
-           setResultado(nuevoValor);
-        });
-    }
-    else if(!operador) {
-       setNum1(prev => {
-        const nuevoValor = prev + valor;
-         setResultado(nuevoValor);
-       });
     } else {
-      setNum2(prev => {
+      // Si hay operador, añadir a num2
+      setNum2((prev) => {
         const nuevoValor = prev + valor;
-        setResultado(nuevoValor);
-      }); 
-  }
-}
-  function handleCalcular() {
-  if (!num1 || !num2 || !operador) return; // si falta algo, no hacemos nada
-
-  const n1 = parseFloat(num1);
-  const n2 = parseFloat(num2);
-  let res;
-
-  switch (operador) {
-    case "+":
-      res = n1 + n2;
-      break;
-    case "-":
-      res = n1 - n2;
-      break;
-    case "*":
-      res = n1 * n2;
-      break;
-    case "/":
-      res = n2 !== 0 ? n1 / n2 : "Error"; // evitar división por 0
-      break;
-    default:
-      res = "Operador inválido";
-  }
-
-  setResultado(res.toString()); // actualizar display
-  setNum1(res.toString());      // el resultado se convierte en nuevo num1
-  setNum2("");
-  setOperador(null);
-}
-
-  function handleOnC() {
-    setResultado(0); setNum1(null); setNum2(null); setOperador(null);
-  }
-function handleOnOperador(operador) {
-    setOperador(operador);
-}
-  
-  function handleOnInversa(number) {
-    number === null ? alert("no se puede operar") : 
-    setResultado(1/number);
-  }
-  function handleOnFactorial(number) {
-    if (number === null) alert("no se puede operar");
-    else {
-    let acum = 0;
-    for (let i=number; i > 0; i--) {
-        acum*=i;
+        setResultado(nuevoValor); // Mostrar el valor en pantalla
+        return nuevoValor;
+      });
     }
-    setResultado(acum);
   }
-}
-  function handleOnRaiz(number) {
-    number === null ? alert("no se puede operar") : 
-    setResultado(Math.sqrt(number));
+
+  // Manejo de los operadores
+  function handleOnOperador(operador) {
+    if (num1 === "") return; // No hacer nada si no hay num1
+    setOperador(operador);
+  }
+
+  // Calcular resultado
+  function handleCalcular() {
+    if (num1 === "" || num2 === "" || operador === null) return; // Validar entrada
+
+    const n1 = parseFloat(num1);
+    const n2 = parseFloat(num2);
+    let res;
+
+    switch (operador) {
+      case "+":
+        res = n1 + n2;
+        break;
+      case "-":
+        res = n1 - n2;
+        break;
+      case "*":
+        res = n1 * n2;
+        break;
+      case "/":
+        res = n2 !== 0 ? n1 / n2 : "Error"; // Manejo de división por cero
+        break;
+      default:
+        res = "Operador inválido";
+    }
+
+    setResultado(res.toString()); // Mostrar resultado
+    setNum1(res.toString()); // El resultado se convierte en num1
+    setNum2(""); // Resetear num2
+    setOperador(null); // Resetear operador
+  }
+
+  // Limpiar pantalla
+  function handleOnC() {
+    setResultado("");
+    setNum1("");
+    setNum2("");
+    setOperador(null);
+  }
+
+  // Funciones adicionales como raíz, inversa, etc.
+  function handleOnInversa() {
+    if (num1 === "" || num1 === "0") {
+      setResultado("Error");
+    } else {
+      setResultado((1 / parseFloat(num1)).toString());
+    }
+  }
+
+  function handleOnRaiz() {
+    if (num1 === "") {
+      setResultado("Error");
+    } else {
+      setResultado(Math.sqrt(parseFloat(num1)).toString());
+    }
+  }
+
+  function handleOnFactorial() {
+    if (num1 === "" || parseInt(num1) < 0) {
+      setResultado("Error");
+    } else {
+      let acum = 1;
+      for (let i = 1; i <= parseInt(num1); i++) {
+        acum *= i;
+      }
+      setResultado(acum.toString());
+    }
+  }
+
+  function handleOnPi() {
+    if (operador === null) {
+      setNum1(Math.PI.toString());
+    } else {
+      setNum2(Math.PI.toString());
+    }
   }
   function handleOnLn(number) {
     number === null ? alert("no se puede operar") : 
@@ -93,11 +113,6 @@ function handleOnOperador(operador) {
   function handleOnLog10(number) {
     number === null ? alert("no se puede operar") : 
     setResultado(Math.log10(number));
-  }
-  function handleOnPi() {
-    if (!operador) {
-      setNum1(Math.PI());
-    } else setNum2(Math.PI());
   }
   function handleOnRad(number) {
     number === null ? alert("no se puede operar") : 
