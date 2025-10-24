@@ -1,7 +1,7 @@
 package ejerciciosT3;
 
 public class KFC implements Runnable{
-    private static int alitas = 100;
+    private static int alitas = 40;
 
 
     synchronized void consumirAla(String nom, int cantidad) {

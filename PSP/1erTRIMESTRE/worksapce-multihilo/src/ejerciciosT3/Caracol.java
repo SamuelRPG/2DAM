@@ -48,6 +48,11 @@ public class Caracol implements Runnable {
         Thread c3 = new Thread(new Caracol("Tate", 1+Math.random()*4));
         Thread c4 = new Thread(new Caracol("Nigga", 1+Math.random()*4));
         Thread c5 = new Thread(new Caracol("Porro", 1+Math.random()*4));
+        c1.setPriority(10);
+        c2.setPriority(8);
+        c3.setPriority(5);
+        c4.setPriority(3);
+        c5.setPriority(1);
 
         c1.start();
         c2.start();

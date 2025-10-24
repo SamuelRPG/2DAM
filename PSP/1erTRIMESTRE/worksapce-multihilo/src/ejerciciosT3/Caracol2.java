@@ -3,8 +3,6 @@ package ejerciciosT3;
 public class Caracol2 implements Runnable {
     private String nomCaracol;
     private double velCaracol;
-    private static int puestos[] = {0, 0, 0};
-    private static Object lock = new Object();
 
     public Caracol2(String n, double v) {
         nomCaracol = n;
