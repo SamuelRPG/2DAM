@@ -10,4 +10,13 @@ public class Mina {
     public static int getStock() {
         return stock;
     }
+    public static void setStock(int valor) {
+        stock = valor;
+    }
+
+    public static boolean hayChamba() {
+        if (stock > 0) {
+            return true;
+        } else return false;
+    }
 }
